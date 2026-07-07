@@ -1,0 +1,7 @@
+fastapi[standard] == 0.139.0 ## standard installation of FastAPI with all optional dependencies
+psycopg2-binary== 2.9.6 ## PostgreSQL database adapter for Python
+sqlalchemy == 2.0.51 ##Python SQL toolkit and ORM 
+alembic == 1.18.5 ### Database migrations for SQLAlchemy
+asyncpg == 0.31.0 ###To run the SQL engine aynchrously 
+
+
