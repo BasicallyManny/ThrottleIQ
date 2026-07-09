@@ -30,7 +30,7 @@ target_metadata = Base.metadata
 # ... etc.
 
 def get_url():
-    return CONFIG.database_url.replace("postgresql+asyncpg://", "postgresql://")
+    return CONFIG.database_url.replace("postgresql+asyncpg://", "postgresql+psycopg://")
 
 config.set_main_option("sqlalchemy.url", get_url())
 
