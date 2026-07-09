@@ -4,6 +4,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from app.database import init_db, engine
 from contextlib import asynccontextmanager
 from logging_config import loggerSetup, logger
+from app.routes.motoRoutes import motorcycleRoutes
 
 
 
@@ -28,12 +29,14 @@ async def lifespan(app:FastAPI):
     logger.info("Database engine disposed cleanly")
     
 app = FastAPI( title="ThrottleIQ API",lifespan=lifespan)
-@app.get("/health")
+#add routes to fastapi app
+app.include_router(motorcycleRoutes)
+@app.get("/")
 async def check_status():
     return {"status":"Online"}
 
 @app.get("/health/db")
-async def checl_db(db:AsyncSession=Depends(init_db)):
+async def check_db(db:AsyncSession=Depends(init_db)):
     logger.info ("checking database connection...")
     result = await db.execute(text("SELECT 1"))
     return {"Database": "Connected", "Result":result.scalar()}

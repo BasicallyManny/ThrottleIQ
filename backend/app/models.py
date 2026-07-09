@@ -3,6 +3,7 @@ from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy.dialects.postgresql import JSONB
 from sqlalchemy import Integer, String, UniqueConstraint
 
+
 class motorcycle(Base):
     __tablename__ = "motorcycles"
     __table_args__ = (
@@ -18,6 +19,4 @@ class motorcycle(Base):
     top_speed:Mapped[int] = mapped_column(Integer, nullable=True)
     image_url:Mapped[str] = mapped_column(String, nullable=True)
     raw_specs:Mapped[str] = mapped_column(JSONB, nullable=False) #left over data from original api call, stored as JSONB for future reference
-    
-   
     
