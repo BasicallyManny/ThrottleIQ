@@ -3,14 +3,16 @@
  */
 
 import { Outlet } from "react-router";
+import { Navbar } from "../components/Navbar";
 
 
 export  const Layout = () =>{
     return(
-        <div>
-            <main>
+        <>
+            <Navbar></Navbar>
+            <main className="pt-20 overflow-clip">
                 <Outlet/>
             </main>
-        </div>
+        </>
     )
 }

@@ -7,9 +7,6 @@ function App() {
 
   return (
     <>
-      <div className="text-3xl w-full justify-center items-center">
-        ThrottleIQ
-      </div>
       <RouterProvider router={router}/>
     </>
   )

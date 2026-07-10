@@ -1,18 +1,20 @@
-@import 'tailwindcss';
+@import "tailwindcss";
 
 :root {
-   /* UI Colors: chosen from https://coolors.co*/
-   --color-background: #0D1321;
-   --color-border: #F18F01;
-   --color-surface: #151D2E;
-   /* Text */
-   --color-text: #FDFFFF;
-   --color-muted: #7C898B;
+  /* UI Colors: chosen from https://coolors.co*/
+  --color-background: #0d1321;
+  --color-border: #f18f01;
+  --color-surface: #151d2e;
+  /* Text */
+  --color-text: #fdffff;
+  --color-muted: #7c898b;
 }
 
+
+
 body {
-    margin: 0;
-    min-height: 100vh;
-    background-color: var(--color-background);
-    color: var(--color-text);
+  margin: 0;
+  min-height: 100vh;
+  background-color: var(--color-background);
+  color: var(--color-text);
 }
