@@ -8,11 +8,11 @@ import { Navbar } from "../components/Navbar";
 
 export  const Layout = () =>{
     return(
-        <>
+        <div className="h-screen flex flex-col">
             <Navbar></Navbar>
-            <main className="pt-20 overflow-clip">
+            <main className="flex-1 pt-20 h-full">
                 <Outlet/>
             </main>
-        </>
+        </div>
     )
 }
