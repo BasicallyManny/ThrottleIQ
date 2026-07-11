@@ -2,7 +2,6 @@ export interface  SearchFormData {
     year:string;
     model:string;
     make:string;
-    raw_specs:object | null;
 }
 
 export interface SearchFormProps{
@@ -10,13 +9,10 @@ export interface SearchFormProps{
 }
 
 export interface Motorcycle {
+    id:number
     year:string ;
     make:string ;
     model:string ;
-    raw_specs:{
-        "make": string;
-        "model": string;
-        "year": string;
-        "top_speed": string;
-    } | null;
+    image_url:string | null;
+    raw_specs:Record<string,string>;
 }
