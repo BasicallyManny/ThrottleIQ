@@ -1,12 +1,12 @@
 from fastapi import FastAPI, Depends
+from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.database import init_db, engine
 from contextlib import asynccontextmanager
 from logging_config import loggerSetup, logger
 from app.routes.motoRoutes import motorcycleRoutes
-
-
+from app.database import init_db, engine
+from app.config import CONFIG
 
 loggerSetup()
 @asynccontextmanager
@@ -29,6 +29,14 @@ async def lifespan(app:FastAPI):
     logger.info("Database engine disposed cleanly")
     
 app = FastAPI( title="ThrottleIQ API",lifespan=lifespan)
+#add CORs
+app.add_middleware(
+    CORSMiddleware,
+    allow_origins=[CONFIG.VITE_URL_BASE_API_DEV],
+    allow_credentials=True,
+    allow_methods=["*"],
+    allow_headers=["*"]
+)
 #add routes to fastapi app
 app.include_router(motorcycleRoutes)
 @app.get("/")
