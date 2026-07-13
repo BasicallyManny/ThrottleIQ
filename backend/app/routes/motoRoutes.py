@@ -39,6 +39,7 @@ async def lookup_motorcycle(
             raise HTTPException(status_code=502, detail="Received invalid data from upstream API")
     
         return record
+    
         
     
     

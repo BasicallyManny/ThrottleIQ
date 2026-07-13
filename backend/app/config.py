@@ -5,6 +5,7 @@ class Settings(BaseSettings):
     API_NINJAS_KEY:str
     API_NINJAS_URL:str
     VITE_URL_BASE_API_DEV:str
+    WIKI_USER_AGENT:str
 
     model_config = SettingsConfigDict(
         env_file=".env",

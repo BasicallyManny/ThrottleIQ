@@ -4,6 +4,7 @@ from sqlalchemy.exc import IntegrityError, SQLAlchemyError
 
 from app.models import Motorcycle
 from app.utils.parser import parse_specs
+from app.services.api_ninjas import get_moto_image
 
 from logging_config import loggerSetup, logger
 
@@ -41,8 +42,11 @@ async def get_or_create_motorcycle(db:AsyncSession, item:dict):
         return existing
     #if it doesnt exist
     #create new motorcycle record
+    #parse numeric values
     parsed=parse_specs(item)
-    
+    #get motorcycle image
+    image_url= await get_moto_image(make=make,model=model)
+    logger.info(f"######Image URL: ( {image_url} )#######")
     new_record=Motorcycle(
         make=make,
         model=model,
@@ -50,7 +54,8 @@ async def get_or_create_motorcycle(db:AsyncSession, item:dict):
         raw_specs=item,
         weight_kg=parsed["weight_kg"],
         torque_nm=parsed["torque_nm"],
-        horsepower=parsed["horsepower"]
+        horsepower=parsed["horsepower"],
+        image_url=image_url
     )
     #try to add new_record to postgres
     try:
