@@ -3,6 +3,7 @@ import axios from "axios";
 
 import {SearchForm} from "../../components/dashComponents/SearchForm";
 import type {SearchFormData,Motorcycle } from "../../interface/MotoInterface";
+import {MotoTitleCard} from "../../components/dashComponents/MotoTitleCard"
 import { getMotoSpecs } from "../../services/motorycleAPI";
 
 export const Dashboard = () =>{
@@ -37,29 +38,18 @@ export const Dashboard = () =>{
     }
 
     return(
-        <div className="flex flex-col items-center h-full">
+        <div className="flex flex-col w-full h-full">
             {/**Collect Motorcycle data*/}
             <SearchForm onSearch={handleSearch}/>
             {loading && <div className="text-center mt-6 text-orange-600">Loading...</div>}
             {error && <div className="text-center mt-6 text-red-500">{error}</div>}
             {motorcycle ? (
-                <div className="flex flex-col h-full w-full items-center justify-center">
-                    <div>
-                        {motorcycle.make}
-                    </div>
-                        {motorcycle.model}
-                    <div>
-                         {motorcycle.year}
-                    </div>
-                    <div>
-                         {motorcycle.raw_specs.engine}
-                    </div>
+                <div className="flex flex-col h-full w-full mt-3 p-4 items-center">
+                    <MotoTitleCard make={motorcycle.make || ""} model={motorcycle.model || ""} year={motorcycle.year || ""} image_url={motorcycle.image_url || "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"} />
                 </div>
             ):(
                 <div>No SEARCH DATA</div>
             )}
-
-
         </div>
     )
 }
