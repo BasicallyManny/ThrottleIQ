@@ -13,6 +13,17 @@ export interface Motorcycle {
     year:string ;
     make:string ;
     model:string ;
-    image_url:string | null;
+    image_url:string |null;
+    horsepower:number| null;
+    torque_nm:number | null;
+    weight_kg:number | null
+
     raw_specs:Record<string,string>;
+}
+
+export interface MotoTitleCardProps{
+    make:string;
+    model:string;
+    year:string;
+    image_url:string;
 }

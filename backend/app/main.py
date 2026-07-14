@@ -39,6 +39,7 @@ app.add_middleware(
 )
 #add routes to fastapi app
 app.include_router(motorcycleRoutes)
+
 @app.get("/")
 async def check_status():
     return {"status":"Online"}
