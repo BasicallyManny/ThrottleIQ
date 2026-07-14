@@ -10,7 +10,7 @@ export  const Layout = () =>{
     return(
         <div className="h-screen flex flex-col">
             <Navbar></Navbar>
-            <main className="flex-1 pt-20 h-full">
+            <main className="flex-1 pt-22 h-full">
                 <Outlet/>
             </main>
         </div>
