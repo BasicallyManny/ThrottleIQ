@@ -1,56 +1,36 @@
 import type { EngineCardProps } from "../../interface/MotoInterface";
-import { CgUnavailable } from "react-icons/cg";
+import { SpecCard } from "./shared/SpecCard";
+import { StatTile } from "./shared/StatTile";
 
 export const EngineCard = (params: EngineCardProps) => {
 
     const specs = [
         { label: "Engine", value: params.engine },
-        { label: "Displacement", value: params.displacement, size: "large", },
-        {label: "Compression",value: params.compression,size: "large",},
-        {label: "Cooling",value: params.cooling},
-        {label: "Fuel System",value: params.fuel_system,},
-        {label: "Valves Per Cylinder",value: params.valves_per_cylinder },
+        { label: "Displacement", value: params.displacement, size: "base" as const },
+        { label: "Compression", value: params.compression, size: "base" as const },
+        { label: "Cooling", value: params.cooling },
+        { label: "Fuel System", value: params.fuel_system },
+        { label: "Valves Per Cylinder", value: params.valves_per_cylinder },
     ];
 
     const footerStats = [
-        {label: "Gearbox",value: params.gearbox},
-        {label: "Fuel Tank",value: (<>{params.fuel_tank}</> ),},
+        { label: "Gearbox", value: params.gearbox },
+        { label: "Fuel Tank", value: params.fuel_tank },
     ];
 
     return (
-        <div className="rounded-xl border border-(--color-border) bg-(--color-surface) p-6 shadow-lg w-full overflow-clip">
-            <h2 className="mb-6 text-xl font-bold text-(--color-text)">
-                Engine Specs
-            </h2>
-            <div className="grid grid-cols-2 gap-4">
+        <SpecCard title="Engine Specs" className="w-full">
+            <div className="grid grid-cols-3 gap-3">
                 {specs.map((spec) => (
-                    <div key={spec.label} className="rounded-lg bg-(--color-background) p-4">
-                        <p className="text-sm text-(--color-muted)">
-                            {spec.label}
-                        </p>
-
-                        <p className={`mt-2 font-bold text-(--color-text) ${spec.size === "large" ? "text-lg" : "text-md"}`}>
-                            {spec.value || null ? <>{spec.value}</> : <CgUnavailable color="red"/>}
-                        </p>
-                    </div>
+                    <StatTile key={spec.label} label={spec.label} value={spec.value} size={spec.size} />
                 ))}
-
             </div>
 
-            <div className="mt-6 grid grid-cols-2 gap-4 border-t border-(--color-border) pt-4 text-center">
+            <div className="mt-3 grid grid-cols-2 gap-3 border-t border-(--color-border) pt-3 text-center">
                 {footerStats.map((spec) => (
-                    <div key={spec.label}>
-                        <p className="text-md font-bold text-(--color-text)">
-                            {spec.value ? <>{spec.value}</> : <CgUnavailable color="red"/>}
-                        </p>
-                        <p className="text-sm text-(--color-muted)">
-                            {spec.label}
-                        </p>
-                    </div>
+                    <StatTile key={spec.label} label={spec.label} value={spec.value} variant="footer" />
                 ))}
-
             </div>
-
-        </div>
+        </SpecCard>
     );
 };

@@ -28,7 +28,7 @@ export interface MotoTitleCardProps{
     image_url:string;
 }
 
-export interface PeromanceCardProps{
+export interface PerformanceCardProps{
     horsepower:number| null;
     torque_nm:number | null;
     weight_kg:number | null;
@@ -45,7 +45,7 @@ export interface EngineCardProps{
     fuel_tank:string| null
 }
 
-export interface ChasisCardProps{
+export interface ChassisCardProps{
     frame:string | null;
     front_suspension : string | null;
     rear_suspension: string | null;

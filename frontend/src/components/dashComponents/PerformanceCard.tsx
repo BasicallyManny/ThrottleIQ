@@ -1,38 +1,22 @@
-import type { PeromanceCardProps } from "../../interface/MotoInterface"
-import { CgUnavailable } from "react-icons/cg";
+import type { PerformanceCardProps } from "../../interface/MotoInterface";
+import { SpecCard } from "./shared/SpecCard";
+import { StatTile } from "./shared/StatTile";
 
-export const PerformanceCard = ({ horsepower, torque_nm, weight_kg }: PeromanceCardProps) => {
+export const PerformanceCard = ({ horsepower, torque_nm, weight_kg }: PerformanceCardProps) => {
 
     const performanceStats = [
-        {label: "Horsepower", value: (horsepower ? <>{horsepower} HP</> : <CgUnavailable color="red"/>)},
-        { label: "Torque", value: (torque_nm ? <>{torque_nm} Nm </> : <CgUnavailable color="red"/>) },
-        { label: "Total Weight", value: (weight_kg ? <>{weight_kg} kg</> : <CgUnavailable color="red"/>) },
+        { label: "Horsepower", value: horsepower !== null ? `${horsepower} HP` : null },
+        { label: "Torque", value: torque_nm !== null ? `${torque_nm} Nm` : null },
+        { label: "Total Weight", value: weight_kg !== null ? `${weight_kg} kg` : null },
+    ];
 
-    ]
     return (
-        <div className="rounded-xl border border-(--color-border) bg-(--color-surface) p-6 shadow-lg w-full overflow-clip">
-            <h2 className="mb-6 text-lg font-bold text-(--color-text)">
-                Performance
-            </h2>
-
-            <div className="grid grid-rows-2 gap-4">
-                {/* <div className="rounded-lg bg-(--color-background) p-4">
-                    <p className="text-sm text-(--color-muted)">Horsepower</p>
-                    <p className="mt-2 text-3xl font-bold text-(--color-text)">
-                        {horsepower ? <>{horsepower}<span className="text-lg font-normal">HP</span></> : <>---</>}
-                    </p>
-                    <p className="mt-1 text-sm text-(--color-muted)">@ 8000 RPM</p>
-                </div> */}
-
+        <SpecCard title="Performance" className="w-full">
+            <div className="grid grid-cols-3 gap-3">
                 {performanceStats.map((spec) => (
-                    <div key={spec.label} className="rounded-lg bg-(--color-background) p-4">
-                        <p className="text-sm text-(--color-muted)">{spec.label}</p>
-                        <p className="mt-2 text-lg font-bold text-(--color-text)">
-                            {spec.value}
-                        </p>
-                    </div>
+                    <StatTile key={spec.label} label={spec.label} value={spec.value} />
                 ))}
             </div>
-        </div>
-    )
-}
+        </SpecCard>
+    );
+};

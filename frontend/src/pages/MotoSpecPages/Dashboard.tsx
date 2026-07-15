@@ -2,12 +2,11 @@ import { useState } from "react";
 import axios from "axios";
 
 import { SearchForm } from "../../components/dashComponents/SearchForm";
-import type { SearchFormData, Motorcycle, EngineCardProps, ChasisCardProps } from "../../interface/MotoInterface";
+import type { SearchFormData, Motorcycle } from "../../interface/MotoInterface";
 import { MotoTitleCard } from "../../components/dashComponents/MotoTitleCard"
-import { PerformanceCard } from "../../components/dashComponents/PerformanceCard"
-import { EngineCard } from "../../components/dashComponents/EngineCard";
-import { ChassisCard } from "../../components/dashComponents/ChasisCard";
+import { MotoSpecStack } from "../../components/dashComponents/MotoSpecStack";
 import { LoadSpinner } from "../../components/UIComponents/LoadSpinner"
+import { ErrorMessage } from "../../components/UIComponents/ErrorMessage";
 import { getMotoSpecs } from "../../services/motorycleAPI";
 import { GiFullMotorcycleHelmet } from "react-icons/gi";
 
@@ -45,30 +44,6 @@ export const Dashboard = () => {
         }
     }
 
-    const engineProps: EngineCardProps | null = motorcycle ? {
-        engine: motorcycle.raw_specs["engine"],
-        displacement: motorcycle.raw_specs["displacement"],
-        compression: motorcycle.raw_specs["compression"],
-        cooling: motorcycle.raw_specs["cooling"],
-        valves_per_cylinder: motorcycle.raw_specs["valves_per_cylinder"],
-        gearbox: motorcycle.raw_specs["gearbox"],
-        fuel_tank: motorcycle.raw_specs["fuel_capacity"],
-        fuel_system: motorcycle.raw_specs["fuel_system"],
-
-    } : null;
-
-    const chasisProps: ChasisCardProps | null = motorcycle ? {
-        frame: motorcycle.raw_specs["frame"],
-        front_suspension: motorcycle.raw_specs["front_suspension"],
-        rear_suspension: motorcycle.raw_specs["rear_suspension"],
-        ground_clearance: motorcycle.raw_specs["ground_clearance"],
-        wheelbase: motorcycle.raw_specs["wheelbase"],
-        seat_height: motorcycle.raw_specs["seat_height"],
-        total_width: motorcycle.raw_specs["total_width"],
-        total_height: motorcycle.raw_specs["total_height"],
-        total_length: motorcycle.raw_specs["total_length"],
-    } : null
-
     return (
         <div className="flex flex-col w-full h-full relative">
             <SearchForm onSearch={handleSearch} />
@@ -77,15 +52,7 @@ export const Dashboard = () => {
                     <LoadSpinner />
                 </div>
             ) : error ? (
-                <div className="flex h-full w-full flex-col items-center justify-center text-center">
-                    <h3 className="text-base font-medium text-red-500">
-                        Something went wrong
-                    </h3>
-
-                    <p className="mt-1 text-sm text-gray-500">
-                        {error}
-                    </p>
-                </div>
+                <ErrorMessage message={error} />
             ) : motorcycle ? (
                 <div className="flex flex-col w-full mt-3 py-4 px-8 gap-4">
                     <MotoTitleCard
@@ -97,22 +64,7 @@ export const Dashboard = () => {
                             "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
                         }
                     />
-                    <div className="flex w-full  flex-col gap-8">
-                        <div className="grid grid-cols-1 gap-8 lg:grid-cols-2">
-                            <PerformanceCard
-                                weight_kg={motorcycle.weight_kg}
-                                torque_nm={motorcycle.torque_nm}
-                                horsepower={motorcycle.horsepower}
-                            />
-
-                            {engineProps && (
-                                <EngineCard {...engineProps} />
-                            )}
-                        </div>
-                        {chasisProps && (
-                            <ChassisCard {...chasisProps} />
-                        )}
-                    </div>
+                    <MotoSpecStack motorcycle={motorcycle} />
                 </div>
 
             ) : (
