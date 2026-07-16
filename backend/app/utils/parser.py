@@ -23,7 +23,8 @@ def parse_specs(raw_specs:dict|None)->dict|None:
     field_map={
         "horsepower":"power",
         "torque_nm":"torque",
-        "weight_kg":"total_weight"
+        "weight_kg":"total_weight",
+        "displacement":"displacement"
     }
     
     # return {
@@ -42,6 +43,7 @@ def main():
         "power": "52.3 HP (38.2  kW)) @ 8000 RPM",
         "torque": "56.0 Nm (5.7 kgf-m or 41.3 ft.lbs) @ 4000 RPM",
         "total_weight": "192.1 kg (423.4 pounds)",
+        "displacement": "1746.0 ccm (106.54 cubic inches)"
     }
     print(parse_specs(test_dict))
     
