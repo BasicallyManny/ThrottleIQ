@@ -48,11 +48,45 @@ export const SearchForm = ({ onSearch }: SearchFormProps) => {
 
     return (
         <div className="flex justify-center px-4">
-            <form onSubmit={handleSubmit} autoComplete='off' className="flex w-full max-w-3xl flex-col gap-3 rounded-2xl border border-(--color-border) bg-(--color-surface) p-4 shadow-xl lg:flex-row" >
-                <input value={formData.year ?? ""}  autoComplete='off' onChange={handleChange} name="year" type="text" placeholder="Year" className="sm:flex-1 rounded-md bg-transparent px-3 py-2 outline-none placeholder:text-(--color-muted)" />
-                <input value={formData.make}  autoComplete='off' onChange={handleChange} name="make" type="text" placeholder="Make" className="sm:flex-1 rounded-md bg-transparent px-3 py-2 outline-none placeholder:text-(--color-muted)" />
-                <input value={formData.model}  autoComplete='off' onChange={handleChange} name="model" type="text" placeholder="model" className="sm:flex-1 rounded-md bg-transparent px-3 py-2 outline-none placeholder:text-(--color-muted)" />
-                <button type="submit" className="rounded-md bg-(--color-border) px-5 py-2 font-semibold text-(--color-background) transition hover:brightness-110 hover:scale-105">
+            <form
+                onSubmit={handleSubmit}
+                autoComplete="off"
+                className="flex w-full max-w-xl items-center gap-2 rounded-full border border-(--color-border) bg-(--color-surface) p-1.5"
+            >
+                <input
+                    value={formData.year ?? ""}
+                    onChange={handleChange}
+                    name="year"
+                    type="text"
+                    placeholder="Year"
+                    autoComplete="off"
+                    className="w-20 rounded-full bg-transparent px-3 py-1.5 text-sm outline-none placeholder:text-(--color-muted)"
+                />
+
+                <input
+                    value={formData.make}
+                    onChange={handleChange}
+                    name="make"
+                    type="text"
+                    placeholder="Make"
+                    autoComplete="off"
+                    className="min-w-0 flex-1 rounded-full bg-transparent px-3 py-1.5 text-sm outline-none placeholder:text-(--color-muted)"
+                />
+
+                <input
+                    value={formData.model}
+                    onChange={handleChange}
+                    name="model"
+                    type="text"
+                    placeholder="Model"
+                    autoComplete="off"
+                    className="min-w-0 flex-1 rounded-full bg-transparent px-3 py-1.5 text-sm outline-none placeholder:text-(--color-muted)"
+                />
+
+                <button
+                    type="submit"
+                    className="rounded-full bg-(--color-border) px-4 py-1.5 text-sm font-medium text-(--color-background) transition hover:brightness-110"
+                >
                     Search
                 </button>
             </form>

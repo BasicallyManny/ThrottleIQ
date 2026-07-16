@@ -1,10 +1,9 @@
 import { useMemo } from "react";
-import type { Motorcycle, EngineCardProps, ChassisCardProps, PerformanceCardProps } from "../interface/MotoInterface";
+import type { Motorcycle, EngineCardProps, ChassisCardProps } from "../interface/MotoInterface";
 
 interface MotoCardProps {
     engineProps: EngineCardProps | null;
     chasisProps: ChassisCardProps | null;
-    performanceProps: PerformanceCardProps;
 }
 
 export function useMotoCardProps(motorcycle: Motorcycle | null): MotoCardProps {
@@ -32,12 +31,6 @@ export function useMotoCardProps(motorcycle: Motorcycle | null): MotoCardProps {
             total_length: motorcycle.raw_specs["total_length"],
         } : null;
 
-        const performanceProps: PerformanceCardProps = {
-            horsepower: motorcycle?.horsepower ?? null,
-            torque_nm: motorcycle?.torque_nm ?? null,
-            weight_kg: motorcycle?.weight_kg ?? null,
-        };
-
-        return { engineProps, chasisProps, performanceProps };
+        return { engineProps, chasisProps };
     }, [motorcycle]);
 }

@@ -11,13 +11,11 @@ import { getMotoSpecs } from "../../services/motorycleAPI";
 import { GiFullMotorcycleHelmet } from "react-icons/gi";
 
 
-
 export const Dashboard = () => {
 
     const [motorcycle, setMotorcycle] = useState<Motorcycle | null>(null)
     const [loading, setLoading] = useState<boolean>(false)
     const [error, setError] = useState<string | null>(null)
-
 
     //Form Data is propped up from onSearch function we use that Form to call the FastAPI endpoint
     async function handleSearch(data: SearchFormData) {
@@ -63,6 +61,10 @@ export const Dashboard = () => {
                             motorcycle.image_url ||
                             "https://upload.wikimedia.org/wikipedia/commons/6/65/No-Image-Placeholder.svg"
                         }
+                        horsepower={motorcycle.horsepower}
+                        torque_nm={motorcycle.torque_nm}
+                        weight_kg={motorcycle.weight_kg}
+                        displacement={motorcycle.displacement}
                     />
                     <MotoSpecStack motorcycle={motorcycle} />
                 </div>

@@ -55,6 +55,7 @@ async def get_or_create_motorcycle(db:AsyncSession, item:dict):
         weight_kg=parsed["weight_kg"],
         torque_nm=parsed["torque_nm"],
         horsepower=parsed["horsepower"],
+        displacement=parsed["displacement"],
         image_url=image_url
     )
     #try to add new_record to postgres
