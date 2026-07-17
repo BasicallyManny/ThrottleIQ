@@ -1,6 +1,6 @@
 import { createBrowserRouter } from "react-router";
 import { Layout } from "../RootLayout";
-import { Dashboard } from "../../pages/MotoSpecPages/Dashboard";
+import { Dashboard } from "../../pages/Dashboard";
 
 const router = createBrowserRouter([{
     element: <Layout />,
