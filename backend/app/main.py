@@ -3,10 +3,10 @@ from fastapi.middleware.cors import CORSMiddleware
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
 from contextlib import asynccontextmanager
-from logging_config import loggerSetup, logger
+from app.core.logging_config import loggerSetup, logger
 from app.routes.motoRoutes import motorcycleRoutes
-from app.database import init_db, engine
-from app.config import CONFIG
+from app.core.database import init_db, engine
+from app.core.config import CONFIG
 
 loggerSetup()
 @asynccontextmanager

@@ -6,7 +6,7 @@ from app.models import Motorcycle
 from app.utils.parser import parse_specs
 from app.services.api_ninjas import get_moto_image
 
-from logging_config import loggerSetup, logger
+from app.core.logging_config import loggerSetup, logger
 
 loggerSetup()
 async def get_motorcycle(db:AsyncSession,make:str,year:str,model:str):

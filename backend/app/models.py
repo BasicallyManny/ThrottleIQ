@@ -1,5 +1,5 @@
 from decimal import Decimal
-from app.database import Base
+from app.core.database import Base
 from sqlalchemy.orm import mapped_column, Mapped
 from sqlalchemy.dialects.postgresql import JSONB,NUMERIC
 from sqlalchemy import Integer, String, UniqueConstraint
