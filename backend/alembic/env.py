@@ -5,8 +5,8 @@ from sqlalchemy import pool
 
 from alembic import context
 
-from app.core.database import Base 
-from app.models import Motorcycle
+from app.core.database import Base
+from app.models import Motorcycle, Crash, CrashVechicle
 from app.core.config import CONFIG
 
 # this is the Alembic Config object, which provides

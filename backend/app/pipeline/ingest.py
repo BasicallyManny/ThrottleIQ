@@ -7,6 +7,7 @@ https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9g
 
 """
 
+import os
 import requests
 from datetime import datetime, UTC, time, timedelta
 import csv
@@ -17,7 +18,8 @@ loggerSetup()
 
 BASE_URL = "https://data.cityofnewyork.us/resource/h9gi-nx95.json"
 PAGE_SIZE=50000
-OUTPUT_FILE="raw_crash_data.csv"
+RAW_DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "raw")
+OUTPUT_FILE = os.path.join(RAW_DATA_DIR, "raw_crash_data.csv")
 #3 years
 end_date=datetime.now(UTC)
 start_date=end_date - timedelta(days=365*3)
@@ -165,6 +167,7 @@ def main():
     ]
     
     #build the csv
+    os.makedirs(RAW_DATA_DIR, exist_ok=True)
     with open(OUTPUT_FILE, "w" , newline="",encoding="utf-8") as f:
         writer=csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
