@@ -26,8 +26,8 @@ class Motorcycle(Base):
     raw_specs:Mapped[str] = mapped_column(JSONB, nullable=False) #left over data from original api call, stored as JSONB for future reference
     
 class SeverityEnum(str,enum.Enum):
-    FATAL="Fatal",
-    INJURY="Injury",
+    FATAL="Fatal"
+    INJURY="Injury"
     PROPERTY_DAMAGE="Property Damage"
     
 class CrashVechicle(Base):

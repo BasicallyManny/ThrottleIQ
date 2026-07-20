@@ -29,7 +29,11 @@ def main():
         "--input", str(RAW_CRASH_DATA_PATH),
         "--output", str(CLEANED_CSV_PATH),
     )
-    logger.info(f"Done. Cleaned data written to {CLEANED_CSV_PATH}")
+    run_step(
+        "app.pipeline.save_crash_data",
+        "--input", str(CLEANED_CSV_PATH),
+    )
+    logger.info(f"Done. Cleaned data written to {CLEANED_CSV_PATH} and saved to the database")
 
 
 if __name__ == "__main__":
