@@ -67,3 +67,22 @@ def format_monthly_fatal_crashes(rows:Sequence[Row]) -> list[dict]:
         })
         
     return results
+
+def format_yearly_fatal_crashes(rows:Sequence[Row]) -> list[dict]:
+    #build look up
+    year_lookup = {int(row._year): {"count": row.motorcycle_fatalities, "percentage": float(row.percentage)} for row in rows}
+
+    if not year_lookup:
+        return []
+
+    results=[]
+
+    for year in range(min(year_lookup), max(year_lookup) + 1):
+        data=year_lookup.get(year,{"count":0, "percentage":0.0})
+        results.append({
+            "year":year,
+            "count":data["count"],
+            "percentage":data["percentage"]
+        })
+
+    return results

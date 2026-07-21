@@ -1,21 +1,16 @@
 """
 Fetch NYC Motor Vehicle Collision data (last 3 years) from NYC Open Data
 and save to CSV.
-
 Source: Motor Vehicle Collisions - Crashes
 https://data.cityofnewyork.us/Public-Safety/Motor-Vehicle-Collisions-Crashes/h9gi-nx95
-
 """
-
 import os
+import time
 import requests
-from datetime import datetime, UTC, time, timedelta
+from datetime import datetime, UTC, timedelta
 import csv
-
 from app.core.logging_config import loggerSetup, logger
-
 loggerSetup()
-
 BASE_URL = "https://data.cityofnewyork.us/resource/h9gi-nx95.json"
 PAGE_SIZE=50000
 RAW_DATA_DIR = os.path.join(os.path.dirname(__file__), "..", "data", "raw")
@@ -26,7 +21,6 @@ start_date=end_date - timedelta(days=365*3)
 #format to strings
 start_str=start_date.strftime("%Y-%m-%dT%H:%M:%S")
 end_str=end_date.strftime("%Y-%m-%dT%H:%M:%S")
-
 SELECT_FIELDS = [
     "crash_date",
     "crash_time",
@@ -53,9 +47,7 @@ SELECT_FIELDS = [
     "vehicle_type_code_4",
     "vehicle_type_code_5",
 ]
-
 MOTORCYCLE_KEYWORDS = ("MOTORCY", "MOPED", "MINIBIKE", "DIRT BIKE")
-
 VEHICLE_TYPE_FIELDS = [
     "vehicle_type_code1",
     "vehicle_type_code2",
@@ -63,8 +55,6 @@ VEHICLE_TYPE_FIELDS = [
     "vehicle_type_code_4",
     "vehicle_type_code_5",
 ]
-
-
 def get_crash_data():
     """Get crash Data from the BASE URL. It is already in JSON format. Doing some light cleaning of the data
     - Last 3 years
@@ -96,28 +86,22 @@ def get_crash_data():
             logger.exception(f"Request failed: {e}")
             time.sleep(5)
             continue
-
         except ValueError:
             logger.error("Invalid JSON response")
-            break
-
-        if not batch:
             break
         
         if not batch:
             break
         
         rows.extend(batch)
+        offset += PAGE_SIZE
         
-        offset+=PAGE_SIZE
-        
-        if(len(batch) >= PAGE_SIZE):
-            break
+        if len(batch) < PAGE_SIZE:
+            break  # partial page = no more data left
         
         time.sleep(0.5)
         
     return rows
-
 def is_motorcycle(row:list) -> bool:
     """create a is_motorcycle tag to easily mark motorcycles"""
     for field in VEHICLE_TYPE_FIELDS:
@@ -125,7 +109,6 @@ def is_motorcycle(row:list) -> bool:
         if any(k in value for k in MOTORCYCLE_KEYWORDS):
             return True   
     return False
-
 def severity(row:list) -> str:
     """Return wether the crash was fatal, injury, or property damage"""
     
@@ -139,7 +122,6 @@ def severity(row:list) -> str:
         return "Injury"
     
     return "Property Damage"
-
 def main():
     rows = get_crash_data()
     
@@ -195,7 +177,5 @@ def main():
             })
             
         logger.info(f"Done. Wrote {len(rows)} rows to {OUTPUT_FILE}")
-
-
 if __name__ == "__main__":
     main()
