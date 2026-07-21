@@ -3,7 +3,7 @@ EDA on cleaned crash data
 """
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.services.crash_format import format_severity_rows, format_hourly_stats,format_monthly_crash_stats,format_monthly_fatal_crashes,format_yearly_fatal_crashes
+from app.services.crash_format import format_severity_rows, format_hourly_stats,format_monthly_crash_stats,format_monthly_fatal_crashes, format_total_accident_per_borough,format_yearly_fatal_crashes
 
 
 async def get_severity_breakdown_by_motorcycle_involved(db:AsyncSession):
@@ -131,5 +131,27 @@ async def get_motorcycle_fatalities_per_year(db:AsyncSession):
     return format_yearly_fatal_crashes(results)
 
 
-
+async def get_total_moto_accidents_by_borough(db:AsyncSession):
+    Total_ACCIDENT_PER_BOROUGH_QUERY = text(
+        """
+        SELECT
+            COUNT(*) as total_moto_accidents,
+            borough,
+            ROUND(
+                100.0 * COUNT(*) / SUM(COUNT(*)) OVER (),
+                2
+            ) AS percentage
+        FROM crashes
+        WHERE
+            motorcycle_involved = true
+            AND borough IS NOT NULL
+            AND UPPER(borough) <> 'NAN'
+        GROUP BY borough
+        ORDER BY borough;
+        """    
+    )
+    
+    result= await db.execute(Total_ACCIDENT_PER_BOROUGH_QUERY)
+    
+    return format_total_accident_per_borough(result)
 

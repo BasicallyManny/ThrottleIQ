@@ -4,6 +4,7 @@ from app.core.database import init_db
 from sqlalchemy.ext.asyncio import AsyncSession
 
 
+
 crashStatRouter=APIRouter(prefix="/api/crashStats", tags=["crash stats"])
 
 @crashStatRouter.get("/get_severity_breakdown_by_motorcycle_involved" , summary="motorcycle accident count and percentage based on severity")
@@ -30,3 +31,7 @@ async def get_motorcycle_accident_fatalitity_by_month(db: AsyncSession=Depends(i
 async def get_motorcycle_accident_fatalitity_by_month(db: AsyncSession=Depends(init_db)):
     """Endpoint to get motorcycle fatality count based on year"""
     return await crash_analytics.get_motorcycle_fatalities_per_year(db)
+
+@crashStatRouter.get("/get_motorcycle_accident_by_borough", summary="Returns the total number and percentage of motorcycle related accidents per borough")
+async def get_moto_accident_per_borough(db:AsyncSession=Depends(init_db)):
+    return await crash_analytics.get_total_moto_accidents_by_borough(db)
