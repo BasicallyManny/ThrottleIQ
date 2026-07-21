@@ -5,6 +5,7 @@ from sqlalchemy.ext.asyncio import AsyncSession
 from contextlib import asynccontextmanager
 from app.core.logging_config import loggerSetup, logger
 from app.routes.motoRoutes import motorcycleRoutes
+from app.routes.crashRoutes import crashStatRouter
 from app.core.database import init_db, engine
 from app.core.config import CONFIG
 
@@ -39,7 +40,7 @@ app.add_middleware(
 )
 #add routes to fastapi app
 app.include_router(motorcycleRoutes)
-
+app.include_router(crashStatRouter)
 @app.get("/")
 async def check_status():
     return {"status":"Online"}
