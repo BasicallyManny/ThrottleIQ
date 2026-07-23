@@ -38,7 +38,8 @@ def format_hourly_stats(rows:Sequence[Row]) -> list[dict]:
         
     return result
 
-def format_monthly_crash_stats(rows:Sequence[Row]) -> list[dict]:
+
+def format_monthly_stats(rows:Sequence[Row]) -> list[dict]:
     #build lookup from the query
     month_of_year = {int(row.month_of_year): {"count": row.crash_count, "percentage": float(row.percentage)} for row in rows}
         
@@ -54,29 +55,8 @@ def format_monthly_crash_stats(rows:Sequence[Row]) -> list[dict]:
         
     return result
 
-def format_monthly_fatal_crashes(rows:Sequence[Row]) -> list[dict]:
-    #build look up
-    month_of_year = {int(row.month_of_year): {"count": row.motorcycle_fatalities, "percentage": float(row.percentage)} for row in rows}
-    
-    if not month_of_year:
-        return []
-    
-    results=[]
-    
-    for month in range(12):
-        data=month_of_year.get(
-            month,
-            {"count":0, "percentage":0.0}
-        )
-        results.append({
-            "month":month,
-            "count":data["count"],
-            "percentage":data["percentage"]
-        })
-        
-    return results
 
-def format_yearly_fatal_crashes(rows:Sequence[Row]) -> list[dict]:
+def format_yearly_crashes(rows:Sequence[Row]) -> list[dict]:
     #build look up
     year_lookup = {int(row._year): {"count": row.motorcycle_fatalities, "percentage": float(row.percentage)} for row in rows}
 
@@ -137,5 +117,15 @@ def format_total_accident_per_borough(rows: Sequence[Row]) -> list[dict]:
         })
 
     return results
+
+def format_crash_factor(rows:Sequence[Row]) ->list:
+    return [
+        {
+            "factor": row[0],
+            "count": row[1],
+            "percentage": float(row[2])
+        }
+        for row in rows
+    ]
     
     
