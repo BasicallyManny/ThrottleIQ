@@ -4,5 +4,5 @@ sqlalchemy==2.0.51 ##Python SQL toolkit and ORM
 alembic==1.18.5 ### Database migrations for SQLAlchemy
 asyncpg==0.31.0 ###To run the SQL engine aynchrously 
 httpx ###To make async HTTP requests
-
-
+requests
+pandas
