@@ -1,6 +1,6 @@
 import httpx
-from app.config import CONFIG
-from logging_config import loggerSetup,logger
+from app.core.config import CONFIG
+from app.core.logging_config import loggerSetup,logger
 
 loggerSetup()
 #wikipedia URL to pull images

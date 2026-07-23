@@ -1,10 +1,10 @@
 from fastapi import APIRouter, HTTPException, Query, Depends
-from logging_config import logger
+from app.core.logging_config import logger
 from sqlalchemy.ext.asyncio import AsyncSession
 
 from app.crud.moto_crud import get_or_create_motorcycle, get_motorcycle
 from app.services.api_ninjas import fetch_moto_specs
-from app.database import init_db
+from app.core.database import init_db
 
 motorcycleRoutes=APIRouter(prefix="/api/motorcycles", tags=["motorcycles"])
 
