@@ -41,7 +41,7 @@ export const SearchForm = ({ onSearch }: SearchFormProps) => {
     }
 
     return (
-        <div className="flex justify-center mx-10">
+        <div className="flex w-full justify-center lg:w-auto">
             <form onSubmit={handleSubmit} autoComplete="off" className="flex w-full max-w-xl flex-col gap-2 rounded-2xl border border-(--color-border) bg-(--color-surface) p-2 sm:flex-row sm:items-center sm:rounded-full">
                 <input
                     value={formData.year}

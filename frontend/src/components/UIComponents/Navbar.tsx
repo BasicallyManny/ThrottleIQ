@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import { HiMenuAlt3, HiX } from "react-icons/hi";
-import {Link} from 'react-router-dom'
+import { Link } from 'react-router-dom'
 export const Navbar = () => {
     const [isOpen, setIsOpen] = useState(false);
 
@@ -47,27 +47,39 @@ export const Navbar = () => {
 
             {/* Mobile Menu */}
             <div
-                className={`overflow-hidden bg-[#0d1321] transition-all duration-300 md:hidden ${isOpen ? "max-h-60 border-t border-white/10" : "max-h-0"
+                className={`overflow-hidden bg-[#0d1321] transition-all duration-300 ease-in-out md:hidden ${isOpen
+                        ? "max-h-64 border-t border-white/10"
+                        : "max-h-0"
                     }`}
             >
-                <ul className="flex flex-col py-3">
+                <ul className="py-2">
                     <li>
                         <Link
+                            to="/motorcycle-search"
                             onClick={() => setIsOpen(false)}
-                            className="w-full px-6 py-4 text-left text-gray-300 transition hover:bg-white/5 hover:text-[#f18f01]"
-                            to={"/motorcycle-search"}
+                            className="group flex items-center justify-between px-6 py-4 text-sm font-medium tracking-wide text-gray-300 transition-all duration-200 hover:bg-white/5 hover:pl-8 hover:text-[#f18f01]"
                         >
-                            Motorcycle Search
+                            <span>Motorcycle Search</span>
+
+                            <span className="translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+                                →
+                            </span>
                         </Link>
                     </li>
 
+                    <li className="mx-6 border-t border-white/10" />
+
                     <li>
                         <Link
+                            to="/analytics"
                             onClick={() => setIsOpen(false)}
-                            className="w-full px-6 py-4 text-left text-gray-300 transition hover:bg-white/5 hover:text-[#f18f01]"
-                            to={"/analytics"}
+                            className="group flex items-center justify-between px-6 py-4 text-sm font-medium tracking-wide text-gray-300 transition-all duration-200 hover:bg-white/5 hover:pl-8 hover:text-[#f18f01]"
                         >
-                            NYC Accident Analytics
+                            <span>NYC Accident Analytics</span>
+
+                            <span className="translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+                                →
+                            </span>
                         </Link>
                     </li>
                 </ul>
