@@ -8,7 +8,6 @@ export const getMotoSpecs = async ({
   model,
   year,
 }:SearchFormData): Promise<Motorcycle> => {
-  console.log(URL_BASE_API_DEV)
   if (!URL_BASE_API_DEV) {
     throw new Error("URL_BASE_API_DEV is not configured");
   }
