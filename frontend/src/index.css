@@ -14,6 +14,20 @@
   /* Text */
   --color-text: #fdffff;
   --color-muted: #7c898b;
+  /* Chart series (validated for CVD-safety + contrast against --color-surface) */
+  --color-chart-motorcycle: #d95926;
+  --color-chart-non-motorcycle: #3987e5;
+  --color-chart-grid: #2c2c2a;
+  /* Categorical ramp (fixed order — assign by slot, never cycle/regenerate) */
+  --color-chart-cat-1: #3987e5;
+  --color-chart-cat-2: #d95926;
+  --color-chart-cat-3: #199e70;
+  --color-chart-cat-4: #c98500;
+  --color-chart-cat-5: #d55181;
+  --color-chart-cat-6: #008300;
+  --color-chart-cat-7: #9085e9;
+  --color-chart-cat-8: #e66767;
+  --color-chart-other: #565f6b;
 }
 
 

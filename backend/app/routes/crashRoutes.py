@@ -14,7 +14,7 @@ async def get_severity_breakdown_by_motorcycle_involved(db: AsyncSession=Depends
 
 @crashStatRouter.get("/get_motorcycle_accident_breakdown_by_hour", summary="motorcycle accident count and percentage based on hour")
 async def get_motorcycle_accident_breakdown_by_hour(db: AsyncSession=Depends(init_db)):
-    """Endpoint to get motorcycle accident count based on hour of year"""
+    """Endpoint to get motorcycle accident count based on hour of day"""
     return await crash_analytics.get_motorcycle_accident_breakdown_by_hour(db)
 
 @crashStatRouter.get("/get_motorcycle_accident_breakdown_by_month", summary="motorcycle accident count and percentage based on month")
@@ -35,3 +35,15 @@ async def get_motorcycle_accident_fatalitity_by_month(db: AsyncSession=Depends(i
 @crashStatRouter.get("/get_motorcycle_accident_by_borough", summary="Returns the total number and percentage of motorcycle related accidents per borough")
 async def get_moto_accident_per_borough(db:AsyncSession=Depends(init_db)):
     return await crash_analytics.get_total_moto_accidents_by_borough(db)
+
+@crashStatRouter.get("/get_motorcycle_fatalitity_breakdown_by_hour", summary="Returns motorcycle fatality count and percentage based on hour")
+async def get_moto_accident_per_borough(db:AsyncSession=Depends(init_db)):
+    return await crash_analytics.get_motorcycle_fatality_breakdown_by_hour(db)
+
+@crashStatRouter.get("/get_motorcycle_accident_factor", summary="Returns the count and percentage of all factors in motorcycle accidensts")
+async def get_motorcycle_accident_factor(db:AsyncSession=Depends(init_db)):
+    return await crash_analytics.get_motorcycle_accident_factor(db)
+
+@crashStatRouter.get("/get_motorcycle_fatality_factor", summary="Returns the count and percentage of all factors in motorcycle fatalities")
+async def get_motorcycle_accident_factor(db:AsyncSession=Depends(init_db)):
+    return await crash_analytics.get_motorcycle_fatality_factor(db)

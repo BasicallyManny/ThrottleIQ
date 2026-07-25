@@ -3,7 +3,7 @@ EDA on cleaned crash data
 """
 from sqlalchemy import text
 from sqlalchemy.ext.asyncio import AsyncSession
-from app.services.crash_format import format_severity_rows, format_hourly_stats,format_monthly_crash_stats,format_monthly_fatal_crashes, format_total_accident_per_borough,format_yearly_fatal_crashes
+from app.services.crash_format import format_crash_factor, format_severity_rows, format_hourly_stats,format_monthly_stats, format_total_accident_per_borough,format_yearly_crashes
 
 
 async def get_severity_breakdown_by_motorcycle_involved(db:AsyncSession):
@@ -75,7 +75,7 @@ async def get_motorcycle_accident_breakdown_by_month(db:AsyncSession):
     result = await db.execute(MONTH_QUERY)
     rows=result.all()
     
-    return format_monthly_crash_stats(rows)
+    return format_monthly_stats(rows)
 
 async def get_motorcycle_fatalities_per_month(db:AsyncSession):
     """Returns the total count and percentage of motorcycle accidents based on month"""
@@ -83,7 +83,7 @@ async def get_motorcycle_fatalities_per_month(db:AsyncSession):
         """
         SELECT 
 	        EXTRACT(MONTH FROM crash_datetime) AS month_of_year,
-	        count(*) as motorcycle_fatalities,
+	        count(*) as crash_count,
 	        ROUND(
                 100.0 * COUNT(*) / SUM(COUNT(*)) OVER (),
                 2
@@ -101,7 +101,7 @@ async def get_motorcycle_fatalities_per_month(db:AsyncSession):
     )
     results= await db.execute(FATALITIES_PER_MONTH_QUERY)
     
-    return format_monthly_fatal_crashes(results)
+    return format_monthly_stats(results)
 
 
 async def get_motorcycle_fatalities_per_year(db:AsyncSession):
@@ -128,7 +128,7 @@ async def get_motorcycle_fatalities_per_year(db:AsyncSession):
     )
     results= await db.execute(FATALITIES_PER_YEAR_QUERY)
     
-    return format_yearly_fatal_crashes(results)
+    return format_yearly_crashes(results)
 
 
 async def get_total_moto_accidents_by_borough(db:AsyncSession):
@@ -155,3 +155,77 @@ async def get_total_moto_accidents_by_borough(db:AsyncSession):
     
     return format_total_accident_per_borough(result)
 
+
+async def get_motorcycle_fatality_breakdown_by_hour(db:AsyncSession):
+    """Returns the total count and percentage of motorcycle accidents based on hour"""
+    HOUR_QUERY = text(
+        """
+        SELECT
+            EXTRACT(HOUR FROM crash_datetime) AS hour_of_day,
+            COUNT(*) AS crash_count,
+            ROUND(
+                100.0 * COUNT(*) / SUM(COUNT(*)) OVER (),
+                2
+            ) AS percentage
+        FROM crashes
+        WHERE motorcycle_involved = true
+            AND severity='FATAL'
+            AND crash_datetime IS NOT NULL
+        GROUP BY hour_of_day
+        ORDER BY hour_of_day;
+        """
+    ) 
+    
+    result = await db.execute(HOUR_QUERY)
+    rows=result.all()
+    
+    return format_hourly_stats(rows)
+
+async def get_motorcycle_accident_factor(db:AsyncSession):
+    CRASH_FACTOR_QUERY = text(
+        """
+        SELECT
+            cv.contributing_factor,
+            COUNT(*) AS count,
+            ROUND(
+                COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (),
+                2
+            ) AS percentage
+        FROM crash_vechicle AS cv
+        JOIN crashes AS c
+        ON cv.collision_id = c.collision_id
+        WHERE c.motorcycle_involved = TRUE
+        AND cv.contributing_factor IS NOT NULL
+        GROUP BY cv.contributing_factor
+        ORDER BY count DESC;
+        """
+    )
+    
+    result= await db.execute(CRASH_FACTOR_QUERY)
+    
+    return format_crash_factor(result)
+
+async def get_motorcycle_fatality_factor(db:AsyncSession):
+    CRASH_FACTOR_QUERY = text(
+        """
+            SELECT
+            cv.contributing_factor,
+            COUNT(*) AS count,
+            ROUND(
+                COUNT(*) * 100.0 / SUM(COUNT(*)) OVER (),
+                2
+            ) AS percentage
+        FROM crash_vechicle AS cv
+        JOIN crashes AS c
+            ON cv.collision_id = c.collision_id
+        WHERE c.motorcycle_involved = TRUE
+        AND cv.contributing_factor IS NOT NULL
+        AND c.severity = 'FATAL'
+        GROUP BY cv.contributing_factor
+        ORDER BY count DESC;
+        """
+    )
+    
+    result= await db.execute(CRASH_FACTOR_QUERY)
+    
+    return format_crash_factor(result)
