@@ -19,14 +19,18 @@ export const Navbar = () => {
                 {/* Desktop Navigation */}
                 <ul className="hidden items-center gap-8 text-sm font-medium text-gray-300 md:flex">
                     <li>
-                        <Link className="transition-colors duration-200 hover:text-[#f18f01]" to={'/motorcycle-search'}>
-                            Motorcycle Search
-                        </Link>
-                    </li>
-
-                    <li>
                         <Link className="transition-colors duration-200 hover:text-[#f18f01]" to={'/analytics'}>
                             NYC Accident Analytics
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="transition-colors duration-200 hover:text-[#f18f01]" to={'/accident-map'}>
+                            NYC Accident Map
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="transition-colors duration-200 hover:text-[#f18f01]" to={'/motorcycle-search'}>
+                            Motorcycle Search
                         </Link>
                     </li>
                 </ul>
@@ -53,21 +57,6 @@ export const Navbar = () => {
                     }`}
             >
                 <ul className="py-2">
-                    <li>
-                        <Link
-                            to="/motorcycle-search"
-                            onClick={() => setIsOpen(false)}
-                            className="group flex items-center justify-between px-6 py-4 text-sm font-medium tracking-wide text-gray-300 transition-all duration-200 hover:bg-white/5 hover:pl-8 hover:text-[#f18f01]"
-                        >
-                            <span>Motorcycle Search</span>
-
-                            <span className="translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
-                                →
-                            </span>
-                        </Link>
-                    </li>
-
-                    <li className="mx-6 border-t border-white/10" />
 
                     <li>
                         <Link
@@ -76,6 +65,34 @@ export const Navbar = () => {
                             className="group flex items-center justify-between px-6 py-4 text-sm font-medium tracking-wide text-gray-300 transition-all duration-200 hover:bg-white/5 hover:pl-8 hover:text-[#f18f01]"
                         >
                             <span>NYC Accident Analytics</span>
+
+                            <span className="translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+                                →
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="mx-6 border-t border-white/10" />
+                    <li>
+                        <Link
+                            to="/accident-map"
+                            onClick={() => setIsOpen(false)}
+                            className="group flex items-center justify-between px-6 py-4 text-sm font-medium tracking-wide text-gray-300 transition-all duration-200 hover:bg-white/5 hover:pl-8 hover:text-[#f18f01]"
+                        >
+                            <span>NYC Accident Map</span>
+
+                            <span className="translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+                                →
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="mx-6 border-t border-white/10" />
+                    <li>
+                        <Link
+                            to="/motorcycle-search"
+                            onClick={() => setIsOpen(false)}
+                            className="group flex items-center justify-between px-6 py-4 text-sm font-medium tracking-wide text-gray-300 transition-all duration-200 hover:bg-white/5 hover:pl-8 hover:text-[#f18f01]"
+                        >
+                            <span>Motorcycle Search</span>
 
                             <span className="translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
                                 →
