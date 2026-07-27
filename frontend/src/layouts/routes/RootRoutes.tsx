@@ -3,6 +3,7 @@ import { Layout } from "../RootLayout";
 import { Dashboard } from "../../pages/Dashboard";
 import { CrashStatsPage } from "../../pages/CrashStatsPage";
 import { AccidentMap } from "../../pages/AccidentMap";
+import { LandingPage } from "../../pages/LandingPage";
 
 const router = createBrowserRouter([{
     element: <Layout />,
@@ -18,6 +19,10 @@ const router = createBrowserRouter([{
         {
             path: "/accident-map",
             element:<AccidentMap/>
+        },
+        {
+            path: "/",
+            element:<LandingPage/>
         }
     ]
 }]) 

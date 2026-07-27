@@ -6,7 +6,7 @@ from app.core.config import CONFIG
 
 engine = create_async_engine(
     CONFIG.database_url,
-    echo=True
+    echo=CONFIG.SQL_ECHO
 )
 
 AsyncSessionLocal= async_sessionmaker(engine, class_= AsyncSession, expire_on_commit=False)

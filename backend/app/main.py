@@ -34,7 +34,7 @@ app = FastAPI( title="ThrottleIQ API",lifespan=lifespan)
 #add CORs
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[CONFIG.VITE_URL_BASE_API_DEV],
+    allow_origins=CONFIG.allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]

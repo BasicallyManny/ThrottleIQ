@@ -10,11 +10,11 @@ export const Navbar = () => {
         <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#0d1321]/95 backdrop-blur-md">
             <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
                 {/* Logo */}
-                <div className="cursor-pointer select-none text-xl font-extrabold tracking-tight md:text-2xl">
+                <Link className="cursor-pointer select-none text-xl font-extrabold tracking-tight md:text-2xl" to={"/"}>
                     <span className="text-[#f18f01]">Throttle</span>
                     <span className="text-white">IQ</span>
                     <span className="text-gray-400">NYC</span>
-                </div>
+                </Link>
 
                 {/* Desktop Navigation */}
                 <ul className="hidden items-center gap-8 text-sm font-medium text-gray-300 md:flex">
