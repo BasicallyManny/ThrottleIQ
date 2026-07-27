@@ -6,6 +6,7 @@ from contextlib import asynccontextmanager
 from app.core.logging_config import loggerSetup, logger
 from app.routes.motoRoutes import motorcycleRoutes
 from app.routes.crashRoutes import crashStatRouter
+from app.routes.mapRoutes import mapDataRouter
 from app.core.database import init_db, engine
 from app.core.config import CONFIG
 
@@ -33,7 +34,7 @@ app = FastAPI( title="ThrottleIQ API",lifespan=lifespan)
 #add CORs
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=[CONFIG.VITE_URL_BASE_API_DEV],
+    allow_origins=CONFIG.allowed_origins,
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"]
@@ -41,6 +42,7 @@ app.add_middleware(
 #add routes to fastapi app
 app.include_router(motorcycleRoutes)
 app.include_router(crashStatRouter)
+app.include_router(mapDataRouter)
 @app.get("/")
 async def check_status():
     return {"status":"Online"}
