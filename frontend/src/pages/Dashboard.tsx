@@ -1,7 +1,7 @@
 import { useState } from "react";
 import axios from "axios";
 import { SearchForm } from "../components/dashComponents/SearchForm";
-import  DataTransparencyCard  from "../components/UIComponents/DataTransparencyCard"
+import DataTransparencyCard from "../components/UIComponents/DataTransparencyCard"
 import type { SearchFormData, Motorcycle } from "../interface/MotoInterface";
 import { MotoTitleCard } from "../components/dashComponents/MotoTitleCard"
 import { MotoSpecStack } from "../components/dashComponents/MotoSpecStack";

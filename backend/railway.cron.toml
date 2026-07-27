@@ -1,0 +1,7 @@
+[build]
+builder = "NIXPACKS"
+
+[deploy]
+startCommand = "python -m app.scripts.get_crash_data"
+cronSchedule = "0 0 1 * *"
+restartPolicyType = "NEVER"

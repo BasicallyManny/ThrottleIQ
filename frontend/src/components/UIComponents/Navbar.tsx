@@ -10,23 +10,27 @@ export const Navbar = () => {
         <nav className="fixed top-0 left-0 right-0 z-50 border-b border-white/10 bg-[#0d1321]/95 backdrop-blur-md">
             <div className="mx-auto flex h-20 max-w-7xl items-center justify-between px-6">
                 {/* Logo */}
-                <div className="cursor-pointer select-none text-xl font-extrabold tracking-tight md:text-2xl">
+                <Link className="cursor-pointer select-none text-xl font-extrabold tracking-tight md:text-2xl" to={"/"}>
                     <span className="text-[#f18f01]">Throttle</span>
                     <span className="text-white">IQ</span>
                     <span className="text-gray-400">NYC</span>
-                </div>
+                </Link>
 
                 {/* Desktop Navigation */}
                 <ul className="hidden items-center gap-8 text-sm font-medium text-gray-300 md:flex">
                     <li>
-                        <Link className="transition-colors duration-200 hover:text-[#f18f01]" to={'/motorcycle-search'}>
-                            Motorcycle Search
-                        </Link>
-                    </li>
-
-                    <li>
                         <Link className="transition-colors duration-200 hover:text-[#f18f01]" to={'/analytics'}>
                             NYC Accident Analytics
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="transition-colors duration-200 hover:text-[#f18f01]" to={'/accident-map'}>
+                            NYC Accident Map
+                        </Link>
+                    </li>
+                    <li>
+                        <Link className="transition-colors duration-200 hover:text-[#f18f01]" to={'/motorcycle-search'}>
+                            Motorcycle Search
                         </Link>
                     </li>
                 </ul>
@@ -53,21 +57,6 @@ export const Navbar = () => {
                     }`}
             >
                 <ul className="py-2">
-                    <li>
-                        <Link
-                            to="/motorcycle-search"
-                            onClick={() => setIsOpen(false)}
-                            className="group flex items-center justify-between px-6 py-4 text-sm font-medium tracking-wide text-gray-300 transition-all duration-200 hover:bg-white/5 hover:pl-8 hover:text-[#f18f01]"
-                        >
-                            <span>Motorcycle Search</span>
-
-                            <span className="translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
-                                →
-                            </span>
-                        </Link>
-                    </li>
-
-                    <li className="mx-6 border-t border-white/10" />
 
                     <li>
                         <Link
@@ -76,6 +65,34 @@ export const Navbar = () => {
                             className="group flex items-center justify-between px-6 py-4 text-sm font-medium tracking-wide text-gray-300 transition-all duration-200 hover:bg-white/5 hover:pl-8 hover:text-[#f18f01]"
                         >
                             <span>NYC Accident Analytics</span>
+
+                            <span className="translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+                                →
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="mx-6 border-t border-white/10" />
+                    <li>
+                        <Link
+                            to="/accident-map"
+                            onClick={() => setIsOpen(false)}
+                            className="group flex items-center justify-between px-6 py-4 text-sm font-medium tracking-wide text-gray-300 transition-all duration-200 hover:bg-white/5 hover:pl-8 hover:text-[#f18f01]"
+                        >
+                            <span>NYC Accident Map</span>
+
+                            <span className="translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
+                                →
+                            </span>
+                        </Link>
+                    </li>
+                    <li className="mx-6 border-t border-white/10" />
+                    <li>
+                        <Link
+                            to="/motorcycle-search"
+                            onClick={() => setIsOpen(false)}
+                            className="group flex items-center justify-between px-6 py-4 text-sm font-medium tracking-wide text-gray-300 transition-all duration-200 hover:bg-white/5 hover:pl-8 hover:text-[#f18f01]"
+                        >
+                            <span>Motorcycle Search</span>
 
                             <span className="translate-x-0 opacity-0 transition-all duration-200 group-hover:translate-x-1 group-hover:opacity-100">
                                 →
