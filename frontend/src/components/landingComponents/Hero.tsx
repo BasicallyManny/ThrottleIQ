@@ -55,9 +55,9 @@ export const Hero = () => {
                     </h1>
 
                     <p className="max-w-xl text-base leading-relaxed text-(--color-muted) sm:text-lg">
-                        ThrottleIQ NYC turns three years of NYC crash records into a live incident map,
-                        real-time analytics, and instant motorcycle specs — so every ride starts with
-                        knowledge, not guesswork.
+                        ThrottleIQ NYC transforms three years of NYC motorcycle crash data into an interactive incident map, real-time safety analytics, 
+                        and instant motorcycle specifications. Built by riders, for riders, it helps you better understand the risks of riding on 
+                        New York City's roads so you can make more informed decisions before every ride.
                     </p>
 
                     <div className="flex flex-col gap-3 sm:flex-row">
@@ -71,7 +71,7 @@ export const Hero = () => {
 
                     <dl className="mt-4 grid grid-cols-3 gap-6 border-t border-white/5 pt-6 sm:gap-10">
                         {[
-                            { value: "60K+", label: "Crashes analyzed" },
+                            { value: "250K+", label: "Crashes analyzed" },
                             { value: "5", label: "NYC boroughs" },
                             { value: "3 yrs", label: "Historical data" },
                         ].map((stat) => (
