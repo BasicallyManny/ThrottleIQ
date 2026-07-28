@@ -1,5 +1,6 @@
 import type { ReactNode } from "react"
-import { FiBarChart2, FiDatabase, FiGift, FiMap, FiRefreshCw, FiSearch, FiSmartphone } from "react-icons/fi"
+import { FiBarChart2, FiDatabase, FiGift, FiMap, FiRefreshCw, FiSearch  } from "react-icons/fi"
+import { HiOutlineExclamationTriangle } from "react-icons/hi2";
 import { SectionHeading } from "./SectionHeading"
 import { Reveal } from "./Reveal"
 import { useReveal } from "../../hooks/useReveal"
@@ -81,9 +82,9 @@ interface FeatureTile {
 }
 
 const SUPPORT_TILES: FeatureTile[] = [
-    { icon: <FiDatabase className="h-5 w-5" />, title: "Radically Transparent", description: "Every chart links back to its source, coverage, and known limitations." },
+    { icon: <FiDatabase className="h-5 w-5" />, title: "Data-Driven", description: "Every visualization is generated from 200,000+ official NYPD crash records, ensuring comprehensive and evidence-based insights.." },
     { icon: <FiRefreshCw className="h-5 w-5" />, title: "Always Fresh", description: "Datasets are checked and refreshed at the start of every month." },
-    { icon: <FiSmartphone className="h-5 w-5" />, title: "Built for the Road", description: "A fast, mobile-first interface designed for riders, not spreadsheets." },
+    { icon: <HiOutlineExclamationTriangle className="h-5 w-5" />, title: "Actionable Risk Analysis", description: "Identify when and where motorcycle riders face the highest risk using temporal and geographic trend analysis." },
     { icon: <FiGift className="h-5 w-5" />, title: "Free. No Login.", description: "Every tool is free to use — no account, no paywall, no fine print." },
 ]
 

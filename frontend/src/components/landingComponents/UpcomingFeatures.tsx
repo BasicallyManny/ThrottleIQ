@@ -1,5 +1,5 @@
 import type { ReactNode } from "react"
-import { FiNavigation, FiSmartphone, } from "react-icons/fi"
+import { FiNavigation, FiSmartphone, FiSearch } from "react-icons/fi"
 import { SectionHeading } from "./SectionHeading"
 import { Reveal } from "./Reveal"
 
@@ -13,8 +13,14 @@ interface RoadmapItem {
 const ROADMAP: RoadmapItem[] = [
     {
         quarter: "Q4 2026",
+        title: "Advanced Data Exploration",
+        description: "Leveraging richer statistical analysis to uncover hidden patterns across NYC crash data.",
+        icon: <FiSearch className="h-4 w-4" />,
+    },
+    {
+        quarter: "Q1 2027",
         title: "Route Planner",
-        description: "Plan a ride across NYC that automatically routes around scenic pic.",
+        description: "Plan motorcycle routes across NYC with optimized paths that highlight scenic roads and rider-friendly destinations.",
         icon: <FiNavigation className="h-4 w-4" />,
     },
     {
