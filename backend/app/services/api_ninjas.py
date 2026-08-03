@@ -106,13 +106,6 @@ async def get_moto_image(make:str,model:str)->str|None:
 #     }
 #   }
 # }
-
-def main():
-    data=get_moto_image(make="kawasaki" , model = "ninja 400")
-    print(data)
-
-if __name__ == "__main__":
-    main()
         
         
 

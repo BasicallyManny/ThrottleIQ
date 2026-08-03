@@ -6,3 +6,5 @@ asyncpg==0.31.0 ###To run the SQL engine aynchrously
 httpx ###To make async HTTP requests
 requests
 pandas
+pytest
+pytest-asyncio
