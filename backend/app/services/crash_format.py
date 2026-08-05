@@ -128,4 +128,3 @@ def format_crash_factor(rows:Sequence[Row]) ->list:
         for row in rows
     ]
     
-    
